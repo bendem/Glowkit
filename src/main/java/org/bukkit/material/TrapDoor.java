@@ -86,19 +86,15 @@ public class TrapDoor extends SimpleAttachableMaterialData implements Openable {
         switch (data) {
             case 0x0:
                 return BlockFace.SOUTH;
-
             case 0x1:
                 return BlockFace.NORTH;
-
             case 0x2:
                 return BlockFace.EAST;
-
             case 0x3:
                 return BlockFace.WEST;
+            default:
+                return null;
         }
-
-        return null;
-
     }
 
     public void setFacingDirection(BlockFace face) {

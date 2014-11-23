@@ -82,21 +82,18 @@ public class Bed extends MaterialData implements Directional {
         byte data;
 
         switch (face) {
-        case SOUTH:
-            data = 0x0;
-            break;
-
-        case WEST:
-            data = 0x1;
-            break;
-
-        case NORTH:
-            data = 0x2;
-            break;
-
-        case EAST:
-        default:
-            data = 0x3;
+            case SOUTH:
+                data = 0x0;
+                break;
+            case WEST:
+                data = 0x1;
+                break;
+            case NORTH:
+                data = 0x2;
+                break;
+            case EAST:
+            default:
+                data = 0x3;
         }
 
         if (isHeadOfBed()) {
@@ -115,18 +112,15 @@ public class Bed extends MaterialData implements Directional {
         byte data = (byte) (getData() & 0x7);
 
         switch (data) {
-        case 0x0:
-            return BlockFace.SOUTH;
-
-        case 0x1:
-            return BlockFace.WEST;
-
-        case 0x2:
-            return BlockFace.NORTH;
-
-        case 0x3:
-        default:
-            return BlockFace.EAST;
+            case 0x0:
+                return BlockFace.SOUTH;
+            case 0x1:
+                return BlockFace.WEST;
+            case 0x2:
+                return BlockFace.NORTH;
+            case 0x3:
+            default:
+                return BlockFace.EAST;
         }
     }
 

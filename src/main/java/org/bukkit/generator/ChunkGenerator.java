@@ -231,13 +231,13 @@ public abstract class ChunkGenerator {
         Block highest = world.getBlockAt(x, world.getHighestBlockYAt(x, z), z);
 
         switch (world.getEnvironment()) {
-        case NETHER:
-            return true;
-        case THE_END:
-            return highest.getType() != Material.AIR && highest.getType() != Material.WATER && highest.getType() != Material.LAVA;
-        case NORMAL:
-        default:
-            return highest.getType() == Material.SAND || highest.getType() == Material.GRAVEL;
+            case NETHER:
+                return true;
+            case THE_END:
+                return highest.getType() != Material.AIR && highest.getType() != Material.WATER && highest.getType() != Material.LAVA;
+            case NORMAL:
+            default:
+                return highest.getType() == Material.SAND || highest.getType() == Material.GRAVEL;
         }
     }
 

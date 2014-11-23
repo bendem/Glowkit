@@ -74,16 +74,16 @@ public class NetherWarts extends MaterialData {
         switch (state) {
             case SEEDED:
                 setData((byte) 0x0);
-                return;
+                break;
             case STAGE_ONE:
                 setData((byte) 0x1);
-                return;
+                break;
             case STAGE_TWO:
                 setData((byte) 0x2);
-                return;
+                break;
             case RIPE:
                 setData((byte) 0x3);
-                return;
+                break;
         }
     }
 

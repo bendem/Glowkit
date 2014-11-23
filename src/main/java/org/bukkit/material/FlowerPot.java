@@ -90,35 +90,49 @@ public class FlowerPot extends MaterialData {
     public void setContents(MaterialData materialData) {
         Material mat = materialData.getItemType();
 
-        if (mat == Material.RED_ROSE) {
-            setData((byte) 1);
-        } else if (mat == Material.YELLOW_FLOWER) {
-            setData((byte) 2);
-        } else if (mat == Material.RED_MUSHROOM) {
-            setData((byte) 7);
-        } else if (mat == Material.BROWN_MUSHROOM) {
-            setData((byte) 8);
-        } else if (mat == Material.CACTUS) {
-            setData((byte) 9);
-        } else if (mat == Material.DEAD_BUSH) {
-            setData((byte) 10);
-        } else if (mat == Material.SAPLING) {
-            TreeSpecies species = ((Tree) materialData).getSpecies();
-
-            if (species == TreeSpecies.GENERIC) {
-                setData((byte) 3);
-            } else if (species == TreeSpecies.REDWOOD) {
-                setData((byte) 4);
-            } else if (species == TreeSpecies.BIRCH) {
-                setData((byte) 5);
-            } else {
-                setData((byte) 6);
+        switch (mat) {
+            case RED_ROSE:
+                setData((byte) 1);
+                break;
+            case YELLOW_FLOWER:
+                setData((byte) 2);
+                break;
+            case RED_MUSHROOM:
+                setData((byte) 7);
+                break;
+            case BROWN_MUSHROOM:
+                setData((byte) 8);
+                break;
+            case CACTUS:
+                setData((byte) 9);
+                break;
+            case DEAD_BUSH:
+                setData((byte) 10);
+                break;
+            case SAPLING: {
+                TreeSpecies species = ((Tree) materialData).getSpecies();
+                switch (species) {
+                    case GENERIC:
+                        setData((byte) 3);
+                        break;
+                    case REDWOOD:
+                        setData((byte) 4);
+                        break;
+                    case BIRCH:
+                        setData((byte) 5);
+                        break;
+                    default:
+                        setData((byte) 6);
+                        break;
+                }
+                break;
             }
-        } else if (mat == Material.LONG_GRASS) {
-            GrassSpecies species = ((LongGrass) materialData).getSpecies();
-
-            if (species == GrassSpecies.FERN_LIKE) {
-                setData((byte) 11);
+            case LONG_GRASS: {
+                GrassSpecies species = ((LongGrass) materialData).getSpecies();
+                if (species == GrassSpecies.FERN_LIKE) {
+                    setData((byte) 11);
+                }
+                break;
             }
         }
     }

@@ -116,8 +116,9 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
                 return BlockFace.NORTH;
             case 3:
                 return BlockFace.EAST;
+            default:
+                return null;
         }
-        return null;
     }
 
     @Override

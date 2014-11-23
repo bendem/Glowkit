@@ -58,9 +58,9 @@ public class Gate extends MaterialData implements Directional, Openable {
                 return BlockFace.NORTH;
             case GATE_EAST:
                 return BlockFace.EAST;
+            default:
+                return BlockFace.EAST;
         }
-
-        return BlockFace.EAST;
     }
 
     public boolean isOpen() {

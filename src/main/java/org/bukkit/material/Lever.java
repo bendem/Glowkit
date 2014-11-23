@@ -70,29 +70,23 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
         byte data = (byte) (getData() & 0x7);
 
         switch (data) {
-        case 0x1:
-            return BlockFace.WEST;
-
-        case 0x2:
-            return BlockFace.EAST;
-
-        case 0x3:
-            return BlockFace.NORTH;
-
-        case 0x4:
-            return BlockFace.SOUTH;
-
-        case 0x5:
-        case 0x6:
-            return BlockFace.DOWN;
-
-        case 0x0:
-        case 0x7:
-            return BlockFace.UP;
-
+            case 0x1:
+                return BlockFace.WEST;
+            case 0x2:
+                return BlockFace.EAST;
+            case 0x3:
+                return BlockFace.NORTH;
+            case 0x4:
+                return BlockFace.SOUTH;
+            case 0x5:
+            case 0x6:
+                return BlockFace.DOWN;
+            case 0x0:
+            case 0x7:
+                return BlockFace.UP;
+            default:
+                return null;
         }
-
-        return null;
     }
 
     /**
@@ -102,48 +96,46 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
         byte data = (byte) (getData() & 0x8);
         BlockFace attach = getAttachedFace();
 
-        if (attach == BlockFace.DOWN) {
-            switch (face) {
-            case SOUTH:
-            case NORTH:
-                data |= 0x5;
+        switch (attach) {
+            case DOWN:
+                switch (face) {
+                    case SOUTH:
+                    case NORTH:
+                        data |= 0x5;
+                        break;
+                    case EAST:
+                    case WEST:
+                        data |= 0x6;
+                        break;
+                }
                 break;
-
-            case EAST:
-            case WEST:
-                data |= 0x6;
+            case UP:
+                switch (face) {
+                    case SOUTH:
+                    case NORTH:
+                        data |= 0x7;
+                        break;
+                    case EAST:
+                    case WEST:
+                        data |= 0x0;
+                        break;
+                }
                 break;
-            }
-        } else if (attach == BlockFace.UP) {
-            switch (face) {
-            case SOUTH:
-            case NORTH:
-                data |= 0x7;
-                break;
-
-            case EAST:
-            case WEST:
-                data |= 0x0;
-                break;
-            }
-        } else {
-            switch (face) {
-            case EAST:
-                data |= 0x1;
-                break;
-
-            case WEST:
-                data |= 0x2;
-                break;
-
-            case SOUTH:
-                data |= 0x3;
-                break;
-
-            case NORTH:
-                data |= 0x4;
-                break;
-            }
+            default:
+                switch (face) {
+                    case EAST:
+                        data |= 0x1;
+                        break;
+                    case WEST:
+                        data |= 0x2;
+                        break;
+                    case SOUTH:
+                        data |= 0x3;
+                        break;
+                    case NORTH:
+                        data |= 0x4;
+                        break;
+                }
         }
         setData(data);
     }

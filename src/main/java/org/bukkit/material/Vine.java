@@ -106,7 +106,7 @@ public class Vine extends MaterialData {
      * @param face The face to attach.
      */
     public void putOnFace(BlockFace face) {
-        switch(face) {
+        switch (face) {
             case WEST:
                 setData((byte) (getData() | VINE_WEST));
                 break;
@@ -148,7 +148,7 @@ public class Vine extends MaterialData {
      * @param face The face to detach.
      */
     public void removeFromFace(BlockFace face) {
-        switch(face) {
+        switch (face) {
             case WEST:
                 setData((byte) (getData() & ~VINE_WEST));
                 break;

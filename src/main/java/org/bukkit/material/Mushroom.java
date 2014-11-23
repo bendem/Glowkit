@@ -116,7 +116,6 @@ public class Mushroom extends MaterialData {
                 } else {
                     data += NORTH_SOUTH_MOD;
                 }
-
                 break;
             case EAST:
                 if (painted) {
@@ -124,7 +123,6 @@ public class Mushroom extends MaterialData {
                 } else {
                     data -= NORTH_SOUTH_MOD;
                 }
-
                 break;
             case NORTH:
                 if (painted) {
@@ -132,7 +130,6 @@ public class Mushroom extends MaterialData {
                 } else {
                     data -= EAST_WEST_MOD;
                 }
-
                 break;
             case SOUTH:
                 if (painted) {
@@ -140,13 +137,11 @@ public class Mushroom extends MaterialData {
                 } else {
                     data += EAST_WEST_MOD;
                 }
-
                 break;
             case UP:
                 if (!painted) {
                     data = 0;
                 }
-
                 break;
             default:
                 throw new IllegalArgumentException("Can't paint that face of a mushroom!");
