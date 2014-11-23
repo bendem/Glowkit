@@ -400,7 +400,7 @@ public class MemorySection implements ConfigurationSection {
             } else if (object instanceof String) {
                 try {
                     result.add(Integer.valueOf((String) object));
-                } catch (Exception ex) {
+                } catch (Exception e) {
                 }
             } else if (object instanceof Character) {
                 result.add((int) ((Character) object).charValue());
@@ -451,7 +451,7 @@ public class MemorySection implements ConfigurationSection {
             } else if (object instanceof String) {
                 try {
                     result.add(Double.valueOf((String) object));
-                } catch (Exception ex) {
+                } catch (Exception e) {
                 }
             } else if (object instanceof Character) {
                 result.add((double) ((Character) object).charValue());
@@ -478,7 +478,7 @@ public class MemorySection implements ConfigurationSection {
             } else if (object instanceof String) {
                 try {
                     result.add(Float.valueOf((String) object));
-                } catch (Exception ex) {
+                } catch (Exception e) {
                 }
             } else if (object instanceof Character) {
                 result.add((float) ((Character) object).charValue());
@@ -505,7 +505,7 @@ public class MemorySection implements ConfigurationSection {
             } else if (object instanceof String) {
                 try {
                     result.add(Long.valueOf((String) object));
-                } catch (Exception ex) {
+                } catch (Exception e) {
                 }
             } else if (object instanceof Character) {
                 result.add((long) ((Character) object).charValue());
@@ -532,7 +532,7 @@ public class MemorySection implements ConfigurationSection {
             } else if (object instanceof String) {
                 try {
                     result.add(Byte.valueOf((String) object));
-                } catch (Exception ex) {
+                } catch (Exception e) {
                 }
             } else if (object instanceof Character) {
                 result.add((byte) ((Character) object).charValue());
@@ -585,7 +585,7 @@ public class MemorySection implements ConfigurationSection {
             } else if (object instanceof String) {
                 try {
                     result.add(Short.valueOf((String) object));
-                } catch (Exception ex) {
+                } catch (Exception e) {
                 }
             } else if (object instanceof Character) {
                 result.add((short) ((Character) object).charValue());

@@ -92,7 +92,8 @@ public class SimpleServicesManager implements ServicesManager {
                         it.remove();
                     }
                 }
-            } catch (NoSuchElementException e) {}
+            } catch (NoSuchElementException e) {
+            }
         }
         for (ServiceUnregisterEvent event : unregisteredEvents) {
             Bukkit.getServer().getPluginManager().callEvent(event);
@@ -140,7 +141,8 @@ public class SimpleServicesManager implements ServicesManager {
                         it.remove();
                     }
                 }
-            } catch (NoSuchElementException e) {}
+            } catch (NoSuchElementException e) {
+            }
         }
         for (ServiceUnregisterEvent event : unregisteredEvents) {
             Bukkit.getServer().getPluginManager().callEvent(event);
@@ -181,7 +183,8 @@ public class SimpleServicesManager implements ServicesManager {
                         it.remove();
                     }
                 }
-            } catch (NoSuchElementException e) {}
+            } catch (NoSuchElementException e) {
+            }
         }
         for (ServiceUnregisterEvent event : unregisteredEvents) {
             Bukkit.getServer().getPluginManager().callEvent(event);

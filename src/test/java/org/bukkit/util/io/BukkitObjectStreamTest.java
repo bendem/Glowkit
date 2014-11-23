@@ -121,13 +121,13 @@ public class BukkitObjectStreamTest {
             if (ois != null) {
                 try {
                     ois.close();
-                } catch (IOException ex) {
+                } catch (IOException e) {
                 }
             }
             if (preois != null) {
                 try {
                     preois.close();
-                } catch (IOException ex) {
+                } catch (IOException e) {
                 }
             }
         }
