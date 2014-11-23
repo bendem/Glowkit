@@ -1,5 +1,6 @@
 package org.bukkit.material;
 
+import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
@@ -56,11 +57,9 @@ public class ExtendedRails extends Rails {
 
     @Override
     public void setDirection(BlockFace face, boolean isOnSlope) {
-        boolean extraBitSet = (getData() & 0x8) == 0x8;
+        Validate.isTrue(face == BlockFace.WEST || face == BlockFace.EAST || face == BlockFace.NORTH || face == BlockFace.SOUTH, "Detector rails and powered rails cannot be set on a curve!");
 
-        if (face != BlockFace.WEST && face != BlockFace.EAST && face != BlockFace.NORTH && face != BlockFace.SOUTH) {
-            throw new IllegalArgumentException("Detector rails and powered rails cannot be set on a curve!");
-        }
+        boolean extraBitSet = (getData() & 0x8) == 0x8;
 
         super.setDirection(face, isOnSlope);
         setData((byte) (extraBitSet ? (getData() | 0x8) : (getData() & ~0x8)));

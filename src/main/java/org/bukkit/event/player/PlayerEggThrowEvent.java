@@ -1,5 +1,6 @@
 package org.bukkit.event.player;
 
+import org.apache.commons.lang.Validate;
 import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.EntityType;
@@ -95,7 +96,8 @@ public class PlayerEggThrowEvent extends PlayerEvent {
      * @param hatchType The type of the mob being hatched by the egg
      */
     public void setHatchingType(EntityType hatchType) {
-        if(!hatchType.isSpawnable()) throw new IllegalArgumentException("Can't spawn that entity type from an egg!");
+        Validate.isTrue(hatchType.isSpawnable(), "Can't spawn that entity type from an egg!");
+
         this.hatchType = hatchType;
     }
 

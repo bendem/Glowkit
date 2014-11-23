@@ -237,9 +237,8 @@ public abstract class JavaPlugin extends PluginBase {
 
     @Override
     public void saveResource(String resourcePath, boolean replace) {
-        if (resourcePath == null || resourcePath.equals("")) {
-            throw new IllegalArgumentException("ResourcePath cannot be null or empty");
-        }
+        Validate.notNull(resourcePath, "ResourcePath cannot be null");
+        Validate.isTrue(!resourcePath.isEmpty(), "ResourcePath cannot be empty");
 
         resourcePath = resourcePath.replace('\\', '/');
         InputStream in = getResource(resourcePath);
@@ -275,9 +274,7 @@ public abstract class JavaPlugin extends PluginBase {
 
     @Override
     public InputStream getResource(String filename) {
-        if (filename == null) {
-            throw new IllegalArgumentException("Filename cannot be null");
-        }
+        Validate.notNull(filename, "Filename cannot be null");
 
         try {
             URL url = getClassLoader().getResource(filename);
@@ -507,9 +504,8 @@ public abstract class JavaPlugin extends PluginBase {
      */
     public static <T extends JavaPlugin> T getPlugin(Class<T> clazz) {
         Validate.notNull(clazz, "Null class cannot have a plugin");
-        if (!JavaPlugin.class.isAssignableFrom(clazz)) {
-            throw new IllegalArgumentException(clazz + " does not extend " + JavaPlugin.class);
-        }
+        Validate.isTrue(JavaPlugin.class.isAssignableFrom(clazz), clazz + " does not extend " + JavaPlugin.class);
+
         final ClassLoader cl = clazz.getClassLoader();
         if (!(cl instanceof PluginClassLoader)) {
             throw new IllegalArgumentException(clazz + " is not initialized by " + PluginClassLoader.class);

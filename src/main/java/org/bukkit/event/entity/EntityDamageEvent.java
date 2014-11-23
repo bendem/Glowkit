@@ -66,12 +66,10 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      * @throws IllegalArgumentException if type is null
      */
     public double getOriginalDamage(DamageModifier type) throws IllegalArgumentException {
+        Validate.notNull(type, "Cannot have null DamageModifier");
         final Double damage = originals.get(type);
         if (damage != null) {
             return damage;
-        }
-        if (type == null) {
-            throw new IllegalArgumentException("Cannot have null DamageModifier");
         }
         return 0;
     }

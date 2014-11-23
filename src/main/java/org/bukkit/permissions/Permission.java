@@ -107,9 +107,7 @@ public class Permission {
      * @param value The new default to set
      */
     public void setDefault(PermissionDefault value) {
-        if (defaultValue == null) {
-            throw new IllegalArgumentException("Default value cannot be null");
-        }
+        Validate.notNull(value, "Default value cannot be null");
 
         defaultValue = value;
         recalculatePermissibles();

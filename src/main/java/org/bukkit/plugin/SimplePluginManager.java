@@ -593,10 +593,7 @@ public final class SimplePluginManager implements PluginManager {
 
     public void addPermission(Permission perm) {
         String name = perm.getName().toLowerCase();
-
-        if (permissions.containsKey(name)) {
-            throw new IllegalArgumentException("The permission " + name + " is already defined!");
-        }
+        Validate.isTrue(!permissions.containsKey(name), "The permission " + name + " is already defined!");
 
         permissions.put(name, perm);
         calculatePermissionDefault(perm);

@@ -405,8 +405,8 @@ public class Potion {
 
     public static Potion fromItemStack(ItemStack item) {
         Validate.notNull(item, "item cannot be null");
-        if (item.getType() != Material.POTION)
-            throw new IllegalArgumentException("item is not a potion");
+        Validate.isTrue(item.getType() == Material.POTION, "Item is not a potion");
+
         return fromDamage(item.getDurability());
     }
 
@@ -426,8 +426,8 @@ public class Potion {
      * @param other The new PotionBrewer
      */
     public static void setPotionBrewer(PotionBrewer other) {
-        if (brewer != null)
-            throw new IllegalArgumentException("brewer can only be set internally");
+        Validate.isTrue(brewer == null, "Brewer can only be set internally");
+
         brewer = other;
     }
 

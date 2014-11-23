@@ -1,5 +1,6 @@
 package org.bukkit;
 
+import org.apache.commons.lang.Validate;
 import org.bukkit.block.Block;
 import org.bukkit.util.NumberConversions;
 import org.bukkit.util.Vector;
@@ -299,9 +300,8 @@ public class Location implements Cloneable {
      * @throws IllegalArgumentException for differing worlds
      */
     public Location add(Location vec) {
-        if (vec == null || vec.getWorld() != getWorld()) {
-            throw new IllegalArgumentException("Cannot add Locations of differing worlds");
-        }
+        Validate.notNull(vec, "Vector cannot be null");
+        Validate.isTrue(vec.getWorld() == getWorld(), "Cannot add Locations of differing worlds");
 
         x += vec.x;
         y += vec.y;
@@ -348,9 +348,8 @@ public class Location implements Cloneable {
      * @throws IllegalArgumentException for differing worlds
      */
     public Location subtract(Location vec) {
-        if (vec == null || vec.getWorld() != getWorld()) {
-            throw new IllegalArgumentException("Cannot add Locations of differing worlds");
-        }
+        Validate.notNull(vec, "Location cannot be null");
+        Validate.isTrue(vec.getWorld() == world, "Cannot add Locations of differing worlds");
 
         x -= vec.x;
         y -= vec.y;
@@ -440,13 +439,10 @@ public class Location implements Cloneable {
      * @throws IllegalArgumentException for differing worlds
      */
     public double distanceSquared(Location o) {
-        if (o == null) {
-            throw new IllegalArgumentException("Cannot measure distance to a null location");
-        } else if (o.getWorld() == null || getWorld() == null) {
-            throw new IllegalArgumentException("Cannot measure distance to a null world");
-        } else if (o.getWorld() != getWorld()) {
-            throw new IllegalArgumentException("Cannot measure distance between " + getWorld().getName() + " and " + o.getWorld().getName());
-        }
+        Validate.notNull(o, "Cannot measure distance to a null location");
+        Validate.notNull(o.getWorld(), "Cannot measure distance to a null world");
+        Validate.notNull(world, "Cannot measure distance from a null world");
+        Validate.isTrue(o.getWorld() == world, "Cannot measure distance between " + getWorld().getName() + " and " + o.getWorld().getName());
 
         return NumberConversions.square(x - o.x) + NumberConversions.square(y - o.y) + NumberConversions.square(z - o.z);
     }

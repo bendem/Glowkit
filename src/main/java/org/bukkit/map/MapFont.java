@@ -1,5 +1,7 @@
 package org.bukkit.map;
 
+import org.apache.commons.lang.Validate;
+
 import java.util.HashMap;
 
 /**
@@ -48,9 +50,7 @@ public class MapFont {
      * @return The width in pixels.
      */
     public int getWidth(String text) {
-        if (!isValid(text)) {
-            throw new IllegalArgumentException("text contains invalid characters");
-        }
+        Validate.isTrue(isValid(text), "Text contains invalid characters");
 
         if (text.length() == 0){
             return 0;
@@ -100,13 +100,11 @@ public class MapFont {
         private final boolean[] data;
 
         public CharacterSprite(int width, int height, boolean[] data) {
+            Validate.isTrue(data.length == width * height, "Size of data does not match dimensions");
+
             this.width = width;
             this.height = height;
             this.data = data;
-
-            if (data.length != width * height) {
-                throw new IllegalArgumentException("size of data does not match dimensions");
-            }
         }
 
         /**

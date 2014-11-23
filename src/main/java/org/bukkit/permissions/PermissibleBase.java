@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
+
+import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -46,25 +48,19 @@ public class PermissibleBase implements Permissible {
     }
 
     public boolean isPermissionSet(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("Permission name cannot be null");
-        }
+        Validate.notNull(name, "Permission name cannot be null");
 
         return permissions.containsKey(name.toLowerCase());
     }
 
     public boolean isPermissionSet(Permission perm) {
-        if (perm == null) {
-            throw new IllegalArgumentException("Permission cannot be null");
-        }
+        Validate.notNull(perm, "Permission cannot be null");
 
         return isPermissionSet(perm.getName());
     }
 
     public boolean hasPermission(String inName) {
-        if (inName == null) {
-            throw new IllegalArgumentException("Permission name cannot be null");
-        }
+        Validate.notNull(inName, "Permission name cannot be null");
 
         String name = inName.toLowerCase();
 
@@ -82,9 +78,7 @@ public class PermissibleBase implements Permissible {
     }
 
     public boolean hasPermission(Permission perm) {
-        if (perm == null) {
-            throw new IllegalArgumentException("Permission cannot be null");
-        }
+        Validate.notNull(perm, "Permission cannot be null");
 
         String name = perm.getName().toLowerCase();
 
@@ -95,13 +89,9 @@ public class PermissibleBase implements Permissible {
     }
 
     public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
-        if (name == null) {
-            throw new IllegalArgumentException("Permission name cannot be null");
-        } else if (plugin == null) {
-            throw new IllegalArgumentException("Plugin cannot be null");
-        } else if (!plugin.isEnabled()) {
-            throw new IllegalArgumentException("Plugin " + plugin.getDescription().getFullName() + " is disabled");
-        }
+        Validate.notNull(name, "Permission name cannot be null");
+        Validate.notNull(plugin, "Plugin cannot be null");
+        Validate.isTrue(plugin.isEnabled(), "Plugin " + plugin.getDescription().getFullName() + " is disabled");
 
         PermissionAttachment result = addAttachment(plugin);
         result.setPermission(name, value);
@@ -112,11 +102,8 @@ public class PermissibleBase implements Permissible {
     }
 
     public PermissionAttachment addAttachment(Plugin plugin) {
-        if (plugin == null) {
-            throw new IllegalArgumentException("Plugin cannot be null");
-        } else if (!plugin.isEnabled()) {
-            throw new IllegalArgumentException("Plugin " + plugin.getDescription().getFullName() + " is disabled");
-        }
+        Validate.notNull(plugin, "Plugin cannot be null");
+        Validate.isTrue(plugin.isEnabled(), "Plugin " + plugin.getDescription().getFullName() + " is disabled");
 
         PermissionAttachment result = new PermissionAttachment(plugin, parent);
 
@@ -127,22 +114,17 @@ public class PermissibleBase implements Permissible {
     }
 
     public void removeAttachment(PermissionAttachment attachment) {
-        if (attachment == null) {
-            throw new IllegalArgumentException("Attachment cannot be null");
+        Validate.notNull(attachment, "Attachment cannot be null");
+        Validate.isTrue(attachments.contains(attachment), "Given attachment is not part of Permissible object " + parent);
+
+        attachments.remove(attachment);
+        PermissionRemovedExecutor ex = attachment.getRemovalCallback();
+
+        if (ex != null) {
+            ex.attachmentRemoved(attachment);
         }
 
-        if (attachments.contains(attachment)) {
-            attachments.remove(attachment);
-            PermissionRemovedExecutor ex = attachment.getRemovalCallback();
-
-            if (ex != null) {
-                ex.attachmentRemoved(attachment);
-            }
-
-            recalculatePermissions();
-        } else {
-            throw new IllegalArgumentException("Given attachment is not part of Permissible object " + parent);
-        }
+        recalculatePermissions();
     }
 
     public void recalculatePermissions() {
@@ -193,13 +175,9 @@ public class PermissibleBase implements Permissible {
     }
 
     public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
-        if (name == null) {
-            throw new IllegalArgumentException("Permission name cannot be null");
-        } else if (plugin == null) {
-            throw new IllegalArgumentException("Plugin cannot be null");
-        } else if (!plugin.isEnabled()) {
-            throw new IllegalArgumentException("Plugin " + plugin.getDescription().getFullName() + " is disabled");
-        }
+        Validate.notNull(name, "Permission name cannot be null");
+        Validate.notNull(plugin, "Plugin cannot be null");
+        Validate.isTrue(plugin.isEnabled(), "Plugin " + plugin.getDescription().getFullName() + " is disabled");
 
         PermissionAttachment result = addAttachment(plugin, ticks);
 
@@ -211,11 +189,8 @@ public class PermissibleBase implements Permissible {
     }
 
     public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
-        if (plugin == null) {
-            throw new IllegalArgumentException("Plugin cannot be null");
-        } else if (!plugin.isEnabled()) {
-            throw new IllegalArgumentException("Plugin " + plugin.getDescription().getFullName() + " is disabled");
-        }
+        Validate.notNull(plugin, "Plugin cannot be null");
+        Validate.isTrue(plugin.isEnabled(), "Plugin " + plugin.getDescription().getFullName() + " is disabled");
 
         PermissionAttachment result = addAttachment(plugin);
 

@@ -240,11 +240,9 @@ public abstract class PotionEffectType {
      * @param type PotionType to register
      */
     public static void registerPotionEffectType(PotionEffectType type) {
-        if (byId[type.id] != null || byName.containsKey(type.getName().toLowerCase())) {
-            throw new IllegalArgumentException("Cannot set already-set type");
-        } else if (!acceptingNew) {
-            throw new IllegalStateException(
-                    "No longer accepting new potion effect types (can only be done by the server implementation)");
+        Validate.isTrue(byId[type.id] == null && !byName.containsKey(type.getName().toLowerCase()), "Cannot set already-set type");
+        if (!acceptingNew) {
+            throw new IllegalStateException("No longer accepting new potion effect types (can only be done by the server implementation)");
         }
 
         byId[type.id] = type;

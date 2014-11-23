@@ -1,5 +1,7 @@
 package org.bukkit.map;
 
+import org.apache.commons.lang.Validate;
+
 /**
  * Represents a cursor on a map.
  */
@@ -107,9 +109,8 @@ public final class MapCursor {
      * @param direction The facing of the cursor, from 0 to 15.
      */
     public void setDirection(byte direction) {
-        if (direction < 0 || direction > 15) {
-            throw new IllegalArgumentException("Direction must be in the range 0-15");
-        }
+        Validate.isTrue(direction >= 0 && direction <= 15, "Direction must be in the range 0-15");
+
         this.direction = direction;
     }
 
@@ -130,9 +131,7 @@ public final class MapCursor {
      */
     @Deprecated
     public void setRawType(byte type) {
-        if (type < 0 || type > 15) {
-            throw new IllegalArgumentException("Type must be in the range 0-15");
-        }
+        Validate.isTrue(type >= 0 && type <= 15, "Type must be in the range 0-15");
         this.type = type;
     }
 

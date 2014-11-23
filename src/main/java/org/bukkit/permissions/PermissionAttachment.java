@@ -2,6 +2,8 @@ package org.bukkit.permissions;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.Plugin;
 
 /**
@@ -15,11 +17,8 @@ public class PermissionAttachment {
     private final Plugin plugin;
 
     public PermissionAttachment(Plugin plugin, Permissible Permissible) {
-        if (plugin == null) {
-            throw new IllegalArgumentException("Plugin cannot be null");
-        } else if (!plugin.isEnabled()) {
-            throw new IllegalArgumentException("Plugin " + plugin.getDescription().getFullName() + " is disabled");
-        }
+        Validate.notNull(plugin, "Plugin cannot be null");
+        Validate.isTrue(plugin.isEnabled(), "Plugin " + plugin.getDescription().getFullName() + " is disabled");
 
         this.permissible = Permissible;
         this.plugin = plugin;

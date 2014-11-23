@@ -328,9 +328,8 @@ public final class Color implements ConfigurationSerializable {
 
     private static int asInt(String string, Map<String, Object> map) {
         Object value = map.get(string);
-        if (value == null) {
-            throw new IllegalArgumentException(string + " not in map " + map);
-        }
+        Validate.notNull(value, string + " not in map " + map);
+
         if (!(value instanceof Number)) {
             throw new IllegalArgumentException(string + '(' + value + ") is not a number");
         }
