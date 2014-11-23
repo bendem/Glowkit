@@ -1,13 +1,13 @@
 package org.bukkit;
 
 import java.lang.reflect.Constructor;
+import java.util.Arrays;
 import java.util.Map;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.map.MapView;
 import org.bukkit.material.*;
 import org.bukkit.potion.Potion;
-import org.bukkit.util.Java15Compat;
 
 import com.google.common.collect.Maps;
 
@@ -629,7 +629,7 @@ public enum Material {
             if (byId.length > material.id) {
                 byId[material.id] = material;
             } else {
-                byId = Java15Compat.Arrays_copyOfRange(byId, 0, material.id + 2);
+                byId = Arrays.copyOfRange(byId, 0, material.id + 2);
                 byId[material.id] = material;
             }
             BY_NAME.put(material.name(), material);
