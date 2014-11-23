@@ -1,7 +1,5 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
 import java.util.HashMap;
 
 import org.apache.commons.lang.Validate;
@@ -38,8 +36,8 @@ public enum Art {
     DONKEYKONG(25, 4, 3);
 
     private int id, width, height;
-    private static final HashMap<String, Art> BY_NAME = Maps.newHashMap();
-    private static final HashMap<Integer, Art> BY_ID = Maps.newHashMap();
+    private static final HashMap<String, Art> BY_NAME = new HashMap<String, Art>();
+    private static final HashMap<Integer, Art> BY_ID = new HashMap<Integer, Art>();
 
     private Art(int id, int width, int height) {
         this.id = id;

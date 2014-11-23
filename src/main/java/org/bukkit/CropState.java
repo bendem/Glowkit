@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -43,7 +42,7 @@ public enum CropState {
     RIPE(0x7);
 
     private final byte data;
-    private final static Map<Byte, CropState> BY_DATA = Maps.newHashMap();
+    private final static Map<Byte, CropState> BY_DATA = new HashMap<Byte, CropState>();
 
     private CropState(final int data) {
         this.data = (byte) data;

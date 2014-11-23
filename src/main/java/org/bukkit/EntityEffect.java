@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -97,7 +96,7 @@ public enum EntityEffect {
     FIREWORK_EXPLODE(17);
 
     private final byte data;
-    private final static Map<Byte, EntityEffect> BY_DATA = Maps.newHashMap();
+    private final static Map<Byte, EntityEffect> BY_DATA = new HashMap<Byte, EntityEffect>();
 
     EntityEffect(final int data) {
         this.data = (byte) data;

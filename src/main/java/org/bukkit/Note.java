@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.Validate;
@@ -26,7 +25,7 @@ public class Note {
         private final boolean sharpable;
         private final byte id;
 
-        private static final Map<Byte, Note.Tone> BY_DATA = Maps.newHashMap();
+        private static final Map<Byte, Note.Tone> BY_DATA = new HashMap<Byte, Tone>();
         /** The number of tones including sharped tones. */
         public static final byte TONES_COUNT = 12;
 

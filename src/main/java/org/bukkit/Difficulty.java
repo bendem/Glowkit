@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -34,7 +33,7 @@ public enum Difficulty {
     HARD(3);
 
     private final int value;
-    private final static Map<Integer, Difficulty> BY_ID = Maps.newHashMap();
+    private final static Map<Integer, Difficulty> BY_ID = new HashMap<Integer, Difficulty>();
 
     private Difficulty(final int value) {
         this.value = value;

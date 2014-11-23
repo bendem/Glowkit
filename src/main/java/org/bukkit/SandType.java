@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,7 +11,7 @@ public enum SandType {
     RED(0x1);
 
     private final byte data;
-    private final static Map<Byte, SandType> BY_DATA = Maps.newHashMap();
+    private final static Map<Byte, SandType> BY_DATA = new HashMap<Byte, SandType>();
 
     private SandType(final int data) {
         this.data = (byte) data;

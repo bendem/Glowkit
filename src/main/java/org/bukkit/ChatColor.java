@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -111,8 +110,8 @@ public enum ChatColor {
     private final char code;
     private final boolean isFormat;
     private final String toString;
-    private final static Map<Integer, ChatColor> BY_ID = Maps.newHashMap();
-    private final static Map<Character, ChatColor> BY_CHAR = Maps.newHashMap();
+    private final static Map<Integer, ChatColor> BY_ID = new HashMap<Integer, ChatColor>();
+    private final static Map<Character, ChatColor> BY_CHAR = new HashMap<Character, ChatColor>();
 
     private ChatColor(char code, int intCode) {
         this(code, intCode, false);

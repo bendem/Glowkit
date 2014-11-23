@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.entity.HumanEntity;
@@ -34,7 +33,7 @@ public enum GameMode {
     SPECTATOR(3);
 
     private final int value;
-    private final static Map<Integer, GameMode> BY_ID = Maps.newHashMap();
+    private final static Map<Integer, GameMode> BY_ID = new HashMap<Integer, GameMode>();
 
     private GameMode(final int value) {
         this.value = value;

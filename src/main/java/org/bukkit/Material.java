@@ -1,9 +1,8 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
 import java.lang.reflect.Constructor;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.Validate;
@@ -414,7 +413,7 @@ public enum Material {
     private final int id;
     private final Constructor<? extends MaterialData> ctor;
     private static Material[] byId = new Material[383];
-    private final static Map<String, Material> BY_NAME = Maps.newHashMap();
+    private final static Map<String, Material> BY_NAME = new HashMap<String, Material>();
     private final int maxStack;
     private final short durability;
 

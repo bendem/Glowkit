@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -23,7 +22,7 @@ public enum GrassSpecies {
     FERN_LIKE(0x2);
 
     private final byte data;
-    private final static Map<Byte, GrassSpecies> BY_DATA = Maps.newHashMap();
+    private final static Map<Byte, GrassSpecies> BY_DATA = new HashMap<Byte, GrassSpecies>();
 
     private GrassSpecies(final int data) {
         this.data = (byte) data;

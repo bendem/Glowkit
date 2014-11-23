@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.block.BlockFace;
@@ -129,7 +128,7 @@ public enum Effect {
     private final Type type;
     private final Class<?> data;
     private final boolean distanceIgnored;
-    private static final Map<Integer, Effect> BY_ID = Maps.newHashMap();
+    private static final Map<Integer, Effect> BY_ID = new HashMap<Integer, Effect>();
 
     Effect(int id, Type type) {
         this(id,type,null);

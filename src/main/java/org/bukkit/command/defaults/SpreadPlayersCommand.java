@@ -1,9 +1,9 @@
 package org.bukkit.command.defaults;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -207,7 +207,7 @@ public class SpreadPlayersCommand extends VanillaCommand {
     private double spread(World world, List<Player> list, Location[] locations, boolean teams) {
         double distance = 0.0D;
         int i = 0;
-        Map<Team, Location> hashmap = Maps.newHashMap();
+        Map<Team, Location> hashmap = new HashMap<Team, Location>();
 
         for (int j = 0; j < list.size(); ++j) {
             Player player = list.get(j);

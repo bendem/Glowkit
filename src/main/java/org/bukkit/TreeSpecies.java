@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -36,7 +35,7 @@ public enum TreeSpecies {
     ;
 
     private final byte data;
-    private final static Map<Byte, TreeSpecies> BY_DATA = Maps.newHashMap();
+    private final static Map<Byte, TreeSpecies> BY_DATA = new HashMap<Byte, TreeSpecies>();
 
     private TreeSpecies(final int data) {
         this.data = (byte) data;
