@@ -37,7 +37,7 @@ public class PotionEffect implements ConfigurationSerializable {
      * @param ambient the ambient status, see {@link PotionEffect#isAmbient()}
      */
     public PotionEffect(PotionEffectType type, int duration, int amplifier, boolean ambient) {
-        Validate.notNull(type, "effect type cannot be null");
+        Validate.notNull(type, "Effect type cannot be null");
         this.type = type;
         this.duration = duration;
         this.amplifier = amplifier;

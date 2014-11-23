@@ -14,10 +14,10 @@ public final class PluginMessageListenerRegistration {
     private final PluginMessageListener listener;
 
     public PluginMessageListenerRegistration(Messenger messenger, Plugin plugin, String channel, PluginMessageListener listener) {
-        Validate.notNull(messenger, "Messenger cannot be null!");
-        Validate.notNull(plugin, "Plugin cannot be null!");
-        Validate.notNull(channel, "Channel cannot be null!");
-        Validate.notNull(listener, "Listener cannot be null!");
+        Validate.notNull(messenger, "Messenger cannot be null");
+        Validate.notNull(plugin, "Plugin cannot be null");
+        Validate.notNull(channel, "Channel cannot be null");
+        Validate.notNull(listener, "Listener cannot be null");
 
         this.messenger = messenger;
         this.plugin = plugin;

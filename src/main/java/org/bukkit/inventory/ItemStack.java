@@ -125,7 +125,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      *     returns an item meta not created by the item factory
      */
     public ItemStack(final ItemStack stack) throws IllegalArgumentException {
-        Validate.notNull(stack, "Cannot copy null stack");
+        Validate.notNull(stack, "ItemStack cannot be null");
         this.type = stack.getTypeId();
         this.amount = stack.getAmount();
         this.durability = stack.getDurability();

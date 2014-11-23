@@ -17,7 +17,7 @@ public abstract class MetadataValueAdapter implements MetadataValue {
     protected final WeakReference<Plugin> owningPlugin;
 
     protected MetadataValueAdapter(Plugin owningPlugin) {
-        Validate.notNull(owningPlugin, "owningPlugin cannot be null");
+        Validate.notNull(owningPlugin, "OwningPlugin cannot be null");
         this.owningPlugin = new WeakReference<Plugin>(owningPlugin);
     }
 

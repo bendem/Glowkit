@@ -65,8 +65,8 @@ public class InventoryDragEvent extends InventoryInteractEvent {
     public InventoryDragEvent(InventoryView what, ItemStack newCursor, ItemStack oldCursor, boolean right, Map<Integer, ItemStack> slots) {
         super(what);
 
-        Validate.notNull(oldCursor);
-        Validate.notNull(slots);
+        Validate.notNull(oldCursor, "Old cursor cannot be null");
+        Validate.notNull(slots, "Slots cannot be null");
 
         type = right ? DragType.SINGLE : DragType.EVEN;
         this.newCursor = newCursor;

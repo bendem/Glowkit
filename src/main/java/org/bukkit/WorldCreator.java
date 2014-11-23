@@ -262,7 +262,7 @@ public class WorldCreator {
      * @return Resulting generator, or null
      */
     public static ChunkGenerator getGeneratorForName(String world, String name, CommandSender output) {
-        Validate.notNull(world, "World name must be specified");
+        Validate.notNull(world, "World name cannot be null");
         ChunkGenerator result = null;
 
         if (output == null) {

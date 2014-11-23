@@ -503,7 +503,7 @@ public abstract class JavaPlugin extends PluginBase {
      *     extend the class
      */
     public static <T extends JavaPlugin> T getPlugin(Class<T> clazz) {
-        Validate.notNull(clazz, "Null class cannot have a plugin");
+        Validate.notNull(clazz, "Class cannot be null");
         Validate.isTrue(JavaPlugin.class.isAssignableFrom(clazz), clazz + " does not extend " + JavaPlugin.class);
 
         final ClassLoader cl = clazz.getClassLoader();
@@ -528,7 +528,7 @@ public abstract class JavaPlugin extends PluginBase {
      *     given JavaPlugin
      */
     public static JavaPlugin getProvidingPlugin(Class<?> clazz) {
-        Validate.notNull(clazz, "Null class cannot have a plugin");
+        Validate.notNull(clazz, "Class cannot be null");
         final ClassLoader cl = clazz.getClassLoader();
         if (!(cl instanceof PluginClassLoader)) {
             throw new IllegalArgumentException(clazz + " is not provided by " + PluginClassLoader.class);

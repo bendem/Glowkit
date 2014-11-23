@@ -66,7 +66,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      * @throws IllegalArgumentException if type is null
      */
     public double getOriginalDamage(DamageModifier type) throws IllegalArgumentException {
-        Validate.notNull(type, "Cannot have null DamageModifier");
+        Validate.notNull(type, "DamageModifier cannot be null");
         final Double damage = originals.get(type);
         if (damage != null) {
             return damage;
@@ -99,7 +99,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      * @see DamageModifier#BASE
      */
     public double getDamage(DamageModifier type) throws IllegalArgumentException {
-        Validate.notNull(type, "Cannot have null DamageModifier");
+        Validate.notNull(type, "DamageModifier cannot be null");
         final Double damage = modifiers.get(type);
         return damage == null ? 0 : damage;
     }
@@ -116,7 +116,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      * @throws IllegalArgumentException if type is null
      */
     public boolean isApplicable(DamageModifier type) throws IllegalArgumentException {
-        Validate.notNull(type, "Cannot have null DamageModifier");
+        Validate.notNull(type, "DamageModifier cannot be null");
         return modifiers.containsKey(type);
     }
 

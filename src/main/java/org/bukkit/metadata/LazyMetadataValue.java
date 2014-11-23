@@ -46,8 +46,8 @@ public class LazyMetadataValue extends MetadataValueAdapter implements MetadataV
      */
     public LazyMetadataValue(Plugin owningPlugin, CacheStrategy cacheStrategy, Callable<Object> lazyValue) {
         super(owningPlugin);
-        Validate.notNull(cacheStrategy, "cacheStrategy cannot be null");
-        Validate.notNull(lazyValue, "lazyValue cannot be null");
+        Validate.notNull(cacheStrategy, "CacheStrategy cannot be null");
+        Validate.notNull(lazyValue, "LazyValue cannot be null");
         this.internalValue = new SoftReference<Object>(null);
         this.lazyValue = lazyValue;
         this.cacheStrategy = cacheStrategy;

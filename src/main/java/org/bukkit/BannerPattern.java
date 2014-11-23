@@ -136,8 +136,8 @@ public class BannerPattern {
          * @throws IllegalArgumentException If texture or color is null
          */
         public Builder layer(LayerTexture texture, DyeColor color) {
-            Validate.notNull(texture, "Cannot have null texture");
-            Validate.notNull(color, "Cannot have null color");
+            Validate.notNull(texture, "Texture cannot be null");
+            Validate.notNull(color, "Color cannot be null");
             layers.add(new BannerLayer(texture, color));
 
             return this;

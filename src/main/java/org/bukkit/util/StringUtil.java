@@ -49,7 +49,7 @@ public class StringUtil {
      * @throws IllegalArgumentException if string is null
      */
     public static boolean startsWithIgnoreCase(final String string, final String prefix) throws IllegalArgumentException, NullPointerException {
-        Validate.notNull(string, "Cannot check a null string for a match");
+        Validate.notNull(string, "String cannot be null");
         if (string.length() < prefix.length()) {
             return false;
         }
