@@ -2,6 +2,7 @@ package org.bukkit.plugin.messaging;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

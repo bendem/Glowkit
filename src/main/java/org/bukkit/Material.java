@@ -1,5 +1,7 @@
 package org.bukkit;
 
+import com.google.common.collect.Maps;
+
 import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.Map;
@@ -8,8 +10,6 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.map.MapView;
 import org.bukkit.material.*;
 import org.bukkit.potion.Potion;
-
-import com.google.common.collect.Maps;
 
 /**
  * An enum of all material IDs accepted by the official server and client

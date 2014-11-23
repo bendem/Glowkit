@@ -2,10 +2,11 @@ package org.bukkit;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
-import org.apache.commons.lang.Validate;
 
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang.Validate;
 
 /**
  * Represents a <i>complete</i> pattern for a banner.

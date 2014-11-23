@@ -1,8 +1,8 @@
 package org.bukkit.map;
 
-import org.apache.commons.lang.Validate;
-
 import java.util.HashMap;
+
+import org.apache.commons.lang.Validate;
 
 /**
  * Represents a bitmap font drawable to a map.
