@@ -1,10 +1,7 @@
 package org.bukkit.command.defaults;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
+import com.google.common.base.Joiner;
+import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,13 +12,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.StringUtil;
 
-import com.google.common.base.Joiner;
-import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class GiveCommand extends VanillaCommand {
     private static List<String> materials;
     static {
-        ArrayList<String> materialList = new ArrayList<String>();
+        ArrayList<String> materialList = new ArrayList<>();
         for (Material material : Material.values()) {
             materialList.add(material.name());
         }
@@ -103,7 +102,7 @@ public class GiveCommand extends VanillaCommand {
         if (args.length == 2) {
             final String arg = args[1];
             final List<String> materials = GiveCommand.materials;
-            List<String> completion = new ArrayList<String>();
+            List<String> completion = new ArrayList<>();
 
             final int size = materials.size();
             int i = Collections.binarySearch(materials, arg, String.CASE_INSENSITIVE_ORDER);

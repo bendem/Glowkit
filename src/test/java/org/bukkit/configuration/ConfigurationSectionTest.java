@@ -186,7 +186,7 @@ public abstract class ConfigurationSectionTest {
     @Test
     public void testSectionMap() {
         ConfigurationSection config = getConfigurationSection();
-        Map<String, Object> testMap = new LinkedHashMap<String, Object>();
+        Map<String, Object> testMap = new LinkedHashMap<>();
 
         testMap.put("string", "Hello World");
         testMap.put("integer", 15);
@@ -397,7 +397,7 @@ public abstract class ConfigurationSectionTest {
     public void testGetList_String() {
         ConfigurationSection section = getConfigurationSection();
         String key = "exists";
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
 
         map.put("one", 1);
         map.put("two", "two");

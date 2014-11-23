@@ -1,9 +1,9 @@
 package org.bukkit;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Maps;
 import org.apache.commons.lang.Validate;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +56,7 @@ public class BannerPattern {
         TRIANGLE_TOP_RIGHT("rud");
 
         private final String code;
-        private final static Map<String, LayerTexture> BY_CODE = Maps.newHashMap();
+        private final static Map<String, LayerTexture> BY_CODE = new HashMap<>();
 
         private LayerTexture(String code) {
             this.code = code;

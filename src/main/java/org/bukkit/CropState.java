@@ -1,8 +1,7 @@
 package org.bukkit;
 
+import java.util.HashMap;
 import java.util.Map;
-
-import com.google.common.collect.Maps;
 
 /**
  * Represents the different growth states of crops
@@ -43,7 +42,7 @@ public enum CropState {
     RIPE(0x7);
 
     private final byte data;
-    private final static Map<Byte, CropState> BY_DATA = Maps.newHashMap();
+    private final static Map<Byte, CropState> BY_DATA = new HashMap<>();
 
     private CropState(final int data) {
         this.data = (byte) data;

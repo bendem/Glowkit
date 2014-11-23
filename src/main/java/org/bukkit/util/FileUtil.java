@@ -1,10 +1,10 @@
 package org.bukkit.util;
 
-import java.nio.channels.FileChannel;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
 
 /**
  * Class containing file utilities
@@ -23,13 +23,7 @@ public class FileUtil {
             return false;
         }
 
-        FileChannel in = null;
-        FileChannel out = null;
-
-        try {
-            in = new FileInputStream(inFile).getChannel();
-            out = new FileOutputStream(outFile).getChannel();
-
+        try (FileChannel in = new FileInputStream(inFile).getChannel(); FileChannel out = new FileOutputStream(outFile).getChannel()) {
             long pos = 0;
             long size = in.size();
 
@@ -38,20 +32,8 @@ public class FileUtil {
             }
         } catch (IOException ioe) {
             return false;
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-                if (out != null) {
-                    out.close();
-                }
-            } catch (IOException ioe) {
-                return false;
-            }
         }
 
         return true;
-
     }
 }

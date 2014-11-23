@@ -1,10 +1,10 @@
 package org.bukkit.inventory.meta;
 
-import java.util.List;
-import java.util.Map;
-
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.enchantments.Enchantment;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * This type represents the storage mechanism for auxiliary item data.
@@ -50,13 +50,13 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable {
      * <p>
      * Plugins should check if hasLore() returns <code>true</code> before
      * calling this method.
-     * 
+     *
      * @return a list of lore that is set
      */
     List<String> getLore();
 
     /**
-     * Sets the lore for this item. 
+     * Sets the lore for this item.
      * Removes lore when given null.
      *
      * @param lore the lore that will be set

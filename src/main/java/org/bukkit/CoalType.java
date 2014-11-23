@@ -1,8 +1,7 @@
 package org.bukkit;
 
+import java.util.HashMap;
 import java.util.Map;
-
-import com.google.common.collect.Maps;
 
 /**
  * Represents the two types of coal
@@ -12,7 +11,7 @@ public enum CoalType {
     CHARCOAL(0x1);
 
     private final byte data;
-    private final static Map<Byte, CoalType> BY_DATA = Maps.newHashMap();
+    private final static Map<Byte, CoalType> BY_DATA = new HashMap<>();
 
     private CoalType(final int data) {
         this.data = (byte) data;

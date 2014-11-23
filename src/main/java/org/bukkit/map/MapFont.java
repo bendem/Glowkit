@@ -1,13 +1,14 @@
 package org.bukkit.map;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a bitmap font drawable to a map.
  */
 public class MapFont {
 
-    private final HashMap<Character, CharacterSprite> chars = new HashMap<Character, CharacterSprite>();
+    private final Map<Character, CharacterSprite> chars = new HashMap<>();
     private int height = 0;
     protected boolean malleable = true;
 
@@ -117,8 +118,7 @@ public class MapFont {
          * @return True if the pixel is solid, false if transparent.
          */
         public boolean get(int row, int col) {
-            if (row < 0 || col < 0 || row >= height || col >= width) return false;
-            return data[row * width + col];
+            return !(row < 0 || col < 0 || row >= height || col >= width) && data[row * width + col];
         }
 
         /**

@@ -1,7 +1,6 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,7 +12,7 @@ public enum PrismarineType {
     DARK(0x2);
 
     private final byte data;
-    private final static Map<Byte, PrismarineType> BY_DATA = Maps.newHashMap();
+    private final static Map<Byte, PrismarineType> BY_DATA = new HashMap<>();
 
     private PrismarineType(final int data) {
         this.data = (byte) data;

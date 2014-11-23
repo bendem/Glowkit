@@ -1,15 +1,14 @@
 package org.bukkit;
 
-import java.lang.reflect.Constructor;
-import java.util.Map;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.map.MapView;
 import org.bukkit.material.*;
 import org.bukkit.potion.Potion;
 import org.bukkit.util.Java15Compat;
 
-import com.google.common.collect.Maps;
+import java.lang.reflect.Constructor;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * An enum of all material IDs accepted by the official server and client
@@ -414,7 +413,7 @@ public enum Material {
     private final int id;
     private final Constructor<? extends MaterialData> ctor;
     private static Material[] byId = new Material[383];
-    private final static Map<String, Material> BY_NAME = Maps.newHashMap();
+    private final static Map<String, Material> BY_NAME = new HashMap<>();
     private final int maxStack;
     private final short durability;
 
@@ -445,9 +444,7 @@ public enum Material {
         // try to cache the constructor for this material
         try {
             this.ctor = data.getConstructor(int.class, byte.class);
-        } catch (NoSuchMethodException ex) {
-            throw new AssertionError(ex);
-        } catch (SecurityException ex) {
+        } catch (NoSuchMethodException | SecurityException ex) {
             throw new AssertionError(ex);
         }
     }

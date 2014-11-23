@@ -1,11 +1,10 @@
 package org.bukkit;
 
-import java.util.Map;
-
-import com.google.common.collect.Maps;
-
 import org.bukkit.block.BlockFace;
 import org.bukkit.potion.Potion;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A list of effects that the server is able to send to players.
@@ -129,7 +128,7 @@ public enum Effect {
     private final Type type;
     private final Class<?> data;
     private final boolean distanceIgnored;
-    private static final Map<Integer, Effect> BY_ID = Maps.newHashMap();
+    private static final Map<Integer, Effect> BY_ID = new HashMap<>();
 
     Effect(int id, Type type) {
         this(id,type,null);

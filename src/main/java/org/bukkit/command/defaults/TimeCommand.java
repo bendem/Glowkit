@@ -1,8 +1,6 @@
 package org.bukkit.command.defaults;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -11,7 +9,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.util.StringUtil;
 
-import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TimeCommand extends VanillaCommand {
     private static final List<String> TABCOMPLETE_ADD_SET = ImmutableList.of("add", "set");
@@ -33,40 +32,48 @@ public class TimeCommand extends VanillaCommand {
 
         int value;
 
-        if (args[0].equals("set")) {
-            if (!sender.hasPermission("bukkit.command.time.set")) {
-                sender.sendMessage(ChatColor.RED + "You don't have permission to set the time");
-                return true;
-            }
+        switch (args[0].toLowerCase()) {
+            case "set":
+                if (!sender.hasPermission("bukkit.command.time.set")) {
+                    sender.sendMessage(ChatColor.RED + "You don't have permission to set the time");
+                    return true;
+                }
 
-            if (args[1].equals("day")) {
-                value = 0;
-            } else if (args[1].equals("night")) {
-                value = 12500;
-            } else {
+                switch (args[1].toLowerCase()) {
+                    case "day":
+                        value = 0;
+                        break;
+                    case "night":
+                        value = 12500;
+                        break;
+                    default:
+                        value = getInteger(sender, args[1], 0);
+                        break;
+                }
+
+                for (World world : Bukkit.getWorlds()) {
+                    world.setTime(value);
+                }
+
+                Command.broadcastCommandMessage(sender, "Set time to " + value);
+                break;
+            case "add":
+                if (!sender.hasPermission("bukkit.command.time.add")) {
+                    sender.sendMessage(ChatColor.RED + "You don't have permission to set the time");
+                    return true;
+                }
+
                 value = getInteger(sender, args[1], 0);
-            }
 
-            for (World world : Bukkit.getWorlds()) {
-                world.setTime(value);
-            }
+                for (World world : Bukkit.getWorlds()) {
+                    world.setFullTime(world.getFullTime() + value);
+                }
 
-            Command.broadcastCommandMessage(sender, "Set time to " + value);
-        } else if (args[0].equals("add")) {
-            if (!sender.hasPermission("bukkit.command.time.add")) {
-                sender.sendMessage(ChatColor.RED + "You don't have permission to set the time");
-                return true;
-            }
-
-            value = getInteger(sender, args[1], 0);
-
-            for (World world : Bukkit.getWorlds()) {
-                world.setFullTime(world.getFullTime() + value);
-            }
-
-            Command.broadcastCommandMessage(sender, "Added " + value + " to time");
-        } else {
-            sender.sendMessage("Unknown method. Usage: " + usageMessage);
+                Command.broadcastCommandMessage(sender, "Added " + value + " to time");
+                break;
+            default:
+                sender.sendMessage("Unknown method. Usage: " + usageMessage);
+                break;
         }
 
         return true;

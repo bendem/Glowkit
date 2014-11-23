@@ -1,8 +1,6 @@
 package org.bukkit.command.defaults;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,7 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
-import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameModeCommand extends VanillaCommand {
     private static final List<String> GAMEMODE_NAMES = ImmutableList.of("adventure", "creative", "survival");
@@ -51,12 +50,17 @@ public class GameModeCommand extends VanillaCommand {
             GameMode mode = GameMode.getByValue(value);
 
             if (mode == null) {
-                if (modeArg.equalsIgnoreCase("creative") || modeArg.equalsIgnoreCase("c")) {
-                    mode = GameMode.CREATIVE;
-                } else if (modeArg.equalsIgnoreCase("adventure") || modeArg.equalsIgnoreCase("a")) {
-                    mode = GameMode.ADVENTURE;
-                } else {
-                    mode = GameMode.SURVIVAL;
+                switch (modeArg.toLowerCase()) {
+                    case "creative":
+                    case "c":
+                        mode = GameMode.CREATIVE;
+                        break;
+                    case "adventure":
+                    case "a":
+                        mode = GameMode.ADVENTURE;
+                        break;
+                    default:
+                        mode = GameMode.SURVIVAL;
                 }
             }
 

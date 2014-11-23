@@ -2,7 +2,6 @@ package org.bukkit.material;
 
 import org.bukkit.Material;
 import org.bukkit.SandType;
-import org.bukkit.SandstoneType;
 
 /**
  * Represents the different types of sand.

@@ -17,7 +17,7 @@ import java.util.List;
 public class ClearCommand extends VanillaCommand {
     private static List<String> materials;
     static {
-        ArrayList<String> materialList = new ArrayList<String>();
+        List<String> materialList = new ArrayList<>();
         for (Material material : Material.values()) {
             materialList.add(material.name());
         }
@@ -97,7 +97,7 @@ public class ClearCommand extends VanillaCommand {
                 String material = materials.get(i);
                 if (StringUtil.startsWithIgnoreCase(material, arg)) {
                     if (completion == null) {
-                        completion = new ArrayList<String>();
+                        completion = new ArrayList<>();
                     }
                     completion.add(material);
                 } else {

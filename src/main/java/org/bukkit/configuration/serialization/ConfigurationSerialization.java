@@ -1,14 +1,5 @@
 package org.bukkit.configuration.serialization;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -18,13 +9,22 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.BlockVector;
 import org.bukkit.util.Vector;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Utility class for storing and retrieving classes for {@link Configuration}.
  */
 public class ConfigurationSerialization {
     public static final String SERIALIZED_TYPE_KEY = "==";
     private final Class<? extends ConfigurationSerializable> clazz;
-    private static Map<String, Class<? extends ConfigurationSerializable>> aliases = new HashMap<String, Class<? extends ConfigurationSerializable>>();
+    private static Map<String, Class<? extends ConfigurationSerializable>> aliases = new HashMap<>();
 
     static {
         registerClass(Vector.class);

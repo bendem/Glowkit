@@ -1,5 +1,9 @@
 package org.bukkit.plugin.java;
 
+import org.apache.commons.lang.Validate;
+import org.bukkit.plugin.InvalidPluginException;
+import org.bukkit.plugin.PluginDescriptionFile;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -8,16 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang.Validate;
-import org.bukkit.plugin.InvalidPluginException;
-import org.bukkit.plugin.PluginDescriptionFile;
-
 /**
  * A ClassLoader for plugins, to allow shared classes across multiple plugins
  */
 final class PluginClassLoader extends URLClassLoader {
     private final JavaPluginLoader loader;
-    private final Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
+    private final Map<String, Class<?>> classes = new HashMap<>();
     private final PluginDescriptionFile description;
     private final File dataFolder;
     private final File file;

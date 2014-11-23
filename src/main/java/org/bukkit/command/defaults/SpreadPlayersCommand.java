@@ -1,13 +1,7 @@
 package org.bukkit.command.defaults;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -15,6 +9,8 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
+
+import java.util.*;
 
 public class SpreadPlayersCommand extends VanillaCommand {
     private static final Random random = new Random();
@@ -206,7 +202,7 @@ public class SpreadPlayersCommand extends VanillaCommand {
     private double spread(World world, List<Player> list, Location[] locations, boolean teams) {
         double distance = 0.0D;
         int i = 0;
-        Map<Team, Location> hashmap = Maps.newHashMap();
+        Map<Team, Location> hashmap = new HashMap<>();
 
         for (int j = 0; j < list.size(); ++j) {
             Player player = list.get(j);

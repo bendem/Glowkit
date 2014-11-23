@@ -14,7 +14,7 @@ public class TestPlayer implements InvocationHandler {
         Object handle(TestPlayer server, Object[] args);
     }
     private static final Constructor<? extends Player> constructor;
-    private static final HashMap<Method, MethodHandler> methods = new HashMap<Method, MethodHandler>();
+    private static final HashMap<Method, MethodHandler> methods = new HashMap<>();
     static {
         try {
             /*

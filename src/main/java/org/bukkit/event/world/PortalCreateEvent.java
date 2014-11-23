@@ -1,7 +1,7 @@
 package org.bukkit.event.world;
 
-import org.bukkit.block.Block;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
@@ -14,7 +14,7 @@ import java.util.Collection;
 public class PortalCreateEvent extends WorldEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private boolean cancel = false;
-    private final ArrayList<Block> blocks = new ArrayList<Block>();
+    private final ArrayList<Block> blocks = new ArrayList<>();
     private CreateReason reason = CreateReason.FIRE;
 
     public PortalCreateEvent(final Collection<Block> blocks, final World world, CreateReason reason) {

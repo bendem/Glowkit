@@ -1,25 +1,19 @@
 package org.bukkit.command;
 
-import static org.bukkit.util.Java15Compat.Arrays_copyOfRange;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Pattern;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 import org.bukkit.command.defaults.*;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
+import java.util.*;
+import java.util.regex.Pattern;
+
+import static org.bukkit.util.Java15Compat.Arrays_copyOfRange;
+
 public class SimpleCommandMap implements CommandMap {
     private static final Pattern PATTERN_ON_SPACE = Pattern.compile(" ", Pattern.LITERAL);
-    protected final Map<String, Command> knownCommands = new HashMap<String, Command>();
+    protected final Map<String, Command> knownCommands = new HashMap<>();
     private final Server server;
 
     public SimpleCommandMap(final Server server) {
@@ -208,7 +202,7 @@ public class SimpleCommandMap implements CommandMap {
         int spaceIndex = cmdLine.indexOf(' ');
 
         if (spaceIndex == -1) {
-            ArrayList<String> completions = new ArrayList<String>();
+            ArrayList<String> completions = new ArrayList<>();
             Map<String, Command> knownCommands = this.knownCommands;
 
             final String prefix = (sender instanceof Player ? "/" : "");
@@ -268,7 +262,7 @@ public class SimpleCommandMap implements CommandMap {
             }
 
             String[] commandStrings = values.get(alias);
-            List<String> targets = new ArrayList<String>();
+            List<String> targets = new ArrayList<>();
             StringBuilder bad = new StringBuilder();
 
             for (String commandString : commandStrings) {

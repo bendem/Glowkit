@@ -1,23 +1,6 @@
 package org.bukkit.plugin;
 
-import java.io.File;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.WeakHashMap;
-import java.util.logging.Level;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import com.google.common.collect.ImmutableSet;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
@@ -32,22 +15,28 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.util.FileUtil;
 
-import com.google.common.collect.ImmutableSet;
+import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Handles all plugin management from the Server
  */
 public final class SimplePluginManager implements PluginManager {
     private final Server server;
-    private final Map<Pattern, PluginLoader> fileAssociations = new HashMap<Pattern, PluginLoader>();
-    private final List<Plugin> plugins = new ArrayList<Plugin>();
-    private final Map<String, Plugin> lookupNames = new HashMap<String, Plugin>();
+    private final Map<Pattern, PluginLoader> fileAssociations = new HashMap<>();
+    private final List<Plugin> plugins = new ArrayList<>();
+    private final Map<String, Plugin> lookupNames = new HashMap<>();
     private static File updateDirectory = null;
     private final SimpleCommandMap commandMap;
-    private final Map<String, Permission> permissions = new HashMap<String, Permission>();
-    private final Map<Boolean, Set<Permission>> defaultPerms = new LinkedHashMap<Boolean, Set<Permission>>();
-    private final Map<String, Map<Permissible, Boolean>> permSubs = new HashMap<String, Map<Permissible, Boolean>>();
-    private final Map<Boolean, Map<Permissible, Boolean>> defSubs = new HashMap<Boolean, Map<Permissible, Boolean>>();
+    private final Map<String, Permission> permissions = new HashMap<>();
+    private final Map<Boolean, Set<Permission>> defaultPerms = new LinkedHashMap<>();
+    private final Map<String, Map<Permissible, Boolean>> permSubs = new HashMap<>();
+    private final Map<Boolean, Map<Permissible, Boolean>> defSubs = new HashMap<>();
     private boolean useTimings = false;
 
     public SimplePluginManager(Server instance, SimpleCommandMap commandMap) {
@@ -104,17 +93,17 @@ public final class SimplePluginManager implements PluginManager {
         Validate.notNull(directory, "Directory cannot be null");
         Validate.isTrue(directory.isDirectory(), "Directory must be a directory");
 
-        List<Plugin> result = new ArrayList<Plugin>();
+        List<Plugin> result = new ArrayList<>();
         Set<Pattern> filters = fileAssociations.keySet();
 
         if (!(server.getUpdateFolder().equals(""))) {
             updateDirectory = new File(directory, server.getUpdateFolder());
         }
 
-        Map<String, File> plugins = new HashMap<String, File>();
-        Set<String> loadedPlugins = new HashSet<String>();
-        Map<String, Collection<String>> dependencies = new HashMap<String, Collection<String>>();
-        Map<String, Collection<String>> softDependencies = new HashMap<String, Collection<String>>();
+        Map<String, File> plugins = new HashMap<>();
+        Set<String> loadedPlugins = new HashSet<>();
+        Map<String, Collection<String>> dependencies = new HashMap<>();
+        Map<String, Collection<String>> softDependencies = new HashMap<>();
 
         // This is where it figures out all possible plugins
         for (File file : directory.listFiles()) {
@@ -164,13 +153,13 @@ public final class SimplePluginManager implements PluginManager {
                     // Duplicates do not matter, they will be removed together if applicable
                     softDependencies.get(description.getName()).addAll(softDependencySet);
                 } else {
-                    softDependencies.put(description.getName(), new LinkedList<String>(softDependencySet));
+                    softDependencies.put(description.getName(), new LinkedList<>(softDependencySet));
                 }
             }
 
             Collection<String> dependencySet = description.getDepend();
             if (dependencySet != null && !dependencySet.isEmpty()) {
-                dependencies.put(description.getName(), new LinkedList<String>(dependencySet));
+                dependencies.put(description.getName(), new LinkedList<>(dependencySet));
             }
 
             Collection<String> loadBeforeSet = description.getLoadBefore();
@@ -180,7 +169,7 @@ public final class SimplePluginManager implements PluginManager {
                         softDependencies.get(loadBeforeTarget).add(description.getName());
                     } else {
                         // softDependencies is never iterated, so 'ghost' plugins aren't an issue
-                        Collection<String> shortSoftDependency = new LinkedList<String>();
+                        Collection<String> shortSoftDependency = new LinkedList<>();
                         shortSoftDependency.add(description.getName());
                         softDependencies.put(loadBeforeTarget, shortSoftDependency);
                     }
@@ -647,7 +636,7 @@ public final class SimplePluginManager implements PluginManager {
         Map<Permissible, Boolean> map = permSubs.get(name);
 
         if (map == null) {
-            map = new WeakHashMap<Permissible, Boolean>();
+            map = new WeakHashMap<>();
             permSubs.put(name, map);
         }
 
@@ -682,7 +671,7 @@ public final class SimplePluginManager implements PluginManager {
         Map<Permissible, Boolean> map = defSubs.get(op);
 
         if (map == null) {
-            map = new WeakHashMap<Permissible, Boolean>();
+            map = new WeakHashMap<>();
             defSubs.put(op, map);
         }
 
@@ -712,7 +701,7 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     public Set<Permission> getPermissions() {
-        return new HashSet<Permission>(permissions.values());
+        return new HashSet<>(permissions.values());
     }
 
     public boolean useTimings() {

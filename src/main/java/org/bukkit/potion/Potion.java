@@ -1,13 +1,12 @@
 package org.bukkit.potion;
 
-import java.util.Collection;
-
+import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
-import com.google.common.collect.ImmutableList;
+import java.util.Collection;
 
 /**
  * Represents a minecraft potion
@@ -192,7 +191,7 @@ public class Potion {
      * @return The effects that this potion applies
      */
     public Collection<PotionEffect> getEffects() {
-        if (type == null) return ImmutableList.<PotionEffect>of();
+        if (type == null) return ImmutableList.of();
         return getBrewer().getEffectsFromDamage(toDamageValue());
     }
 

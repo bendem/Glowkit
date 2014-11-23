@@ -1,22 +1,5 @@
 package org.bukkit.plugin.java;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-import java.util.logging.Level;
-import java.util.regex.Pattern;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 import org.bukkit.Warning;
@@ -29,17 +12,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
-import org.bukkit.plugin.AuthorNagException;
-import org.bukkit.plugin.EventExecutor;
-import org.bukkit.plugin.InvalidDescriptionException;
-import org.bukkit.plugin.InvalidPluginException;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginLoader;
-import org.bukkit.plugin.RegisteredListener;
-import org.bukkit.plugin.TimedRegisteredListener;
-import org.bukkit.plugin.UnknownDependencyException;
+import org.bukkit.plugin.*;
 import org.yaml.snakeyaml.error.YAMLException;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.util.logging.Level;
+import java.util.regex.Pattern;
 
 /**
  * Represents a Java plugin loader, allowing plugins in the form of .jar
@@ -47,8 +33,8 @@ import org.yaml.snakeyaml.error.YAMLException;
 public final class JavaPluginLoader implements PluginLoader {
     final Server server;
     private final Pattern[] fileFilters = new Pattern[] { Pattern.compile("\\.jar$"), };
-    private final Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
-    private final Map<String, PluginClassLoader> loaders = new LinkedHashMap<String, PluginClassLoader>();
+    private final Map<String, Class<?>> classes = new HashMap<>();
+    private final Map<String, PluginClassLoader> loaders = new LinkedHashMap<>();
 
     /**
      * This class was not meant to be constructed explicitly
@@ -228,11 +214,11 @@ public final class JavaPluginLoader implements PluginLoader {
         Validate.notNull(listener, "Listener can not be null");
 
         boolean useTimings = server.getPluginManager().useTimings();
-        Map<Class<? extends Event>, Set<RegisteredListener>> ret = new HashMap<Class<? extends Event>, Set<RegisteredListener>>();
+        Map<Class<? extends Event>, Set<RegisteredListener>> ret = new HashMap<>();
         Set<Method> methods;
         try {
             Method[] publicMethods = listener.getClass().getMethods();
-            methods = new HashSet<Method>(publicMethods.length, Float.MAX_VALUE);
+            methods = new HashSet<>(publicMethods.length, Float.MAX_VALUE);
             for (Method method : publicMethods) {
                 methods.add(method);
             }
@@ -256,7 +242,7 @@ public final class JavaPluginLoader implements PluginLoader {
             method.setAccessible(true);
             Set<RegisteredListener> eventSet = ret.get(eventClass);
             if (eventSet == null) {
-                eventSet = new HashSet<RegisteredListener>();
+                eventSet = new HashSet<>();
                 ret.put(eventClass, eventSet);
             }
 

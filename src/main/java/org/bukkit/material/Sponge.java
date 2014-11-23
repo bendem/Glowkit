@@ -1,7 +1,6 @@
 package org.bukkit.material;
 
 import org.bukkit.Material;
-import org.bukkit.SandType;
 import org.bukkit.SpongeType;
 
 /**

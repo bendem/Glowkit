@@ -1,8 +1,7 @@
 package org.bukkit;
 
+import java.util.HashMap;
 import java.util.Map;
-
-import com.google.common.collect.Maps;
 
 /**
  * A list of all Effects that can happen to entities.
@@ -97,7 +96,7 @@ public enum EntityEffect {
     FIREWORK_EXPLODE(17);
 
     private final byte data;
-    private final static Map<Byte, EntityEffect> BY_DATA = Maps.newHashMap();
+    private final static Map<Byte, EntityEffect> BY_DATA = new HashMap<>();
 
     EntityEffect(final int data) {
         this.data = (byte) data;

@@ -1,13 +1,7 @@
 package org.bukkit.command.defaults;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
@@ -16,15 +10,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
+import org.bukkit.scoreboard.*;
 import org.bukkit.util.StringUtil;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
+import java.util.*;
 
 public class ScoreboardCommand extends VanillaCommand {
 
@@ -364,7 +353,7 @@ public class ScoreboardCommand extends VanillaCommand {
                 if (team == null) {
                     sender.sendMessage(ChatColor.RED + "No team was found by the name '" + teamName + "'");
                 } else {
-                    Set<String> addedPlayers = new HashSet<String>();
+                    Set<String> addedPlayers = new HashSet<>();
                     if ((sender instanceof Player) && args.length == 3) {
                         team.addPlayer((Player) sender);
                         addedPlayers.add(sender.getName());
@@ -389,8 +378,8 @@ public class ScoreboardCommand extends VanillaCommand {
                     sender.sendMessage(ChatColor.RED + "/scoreboard teams leave [player...]");
                     return false;
                 }
-                Set<String> left = new HashSet<String>();
-                Set<String> noTeam = new HashSet<String>();
+                Set<String> left = new HashSet<>();
+                Set<String> noTeam = new HashSet<>();
                 if ((sender instanceof Player) && args.length == 2) {
                     Team team = mainScoreboard.getPlayerTeam((Player) sender);
                     if (team != null) {
@@ -589,7 +578,7 @@ public class ScoreboardCommand extends VanillaCommand {
     }
 
     private List<String> getCurrentObjectives() {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         for (Objective objective : Bukkit.getScoreboardManager().getMainScoreboard().getObjectives()) {
             list.add(objective.getName());
         }
@@ -598,7 +587,7 @@ public class ScoreboardCommand extends VanillaCommand {
     }
 
     private List<String> getCurrentEntries() {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         for (String entry : Bukkit.getScoreboardManager().getMainScoreboard().getEntries()) {
             list.add(entry);
         }
@@ -607,7 +596,7 @@ public class ScoreboardCommand extends VanillaCommand {
     }
 
     private List<String> getCurrentTeams() {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         for (Team team : Bukkit.getScoreboardManager().getMainScoreboard().getTeams()) {
             list.add(team.getName());
         }

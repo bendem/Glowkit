@@ -1,12 +1,13 @@
 package org.bukkit.util;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Random;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.SerializableAs;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * Represents a mutable vector. Because the components of Vectors are mutable,
@@ -638,7 +639,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     public Map<String, Object> serialize() {
-        Map<String, Object> result = new LinkedHashMap<String, Object>();
+        Map<String, Object> result = new LinkedHashMap<>();
 
         result.put("x", getX());
         result.put("y", getY());

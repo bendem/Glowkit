@@ -1,13 +1,12 @@
 package org.bukkit.inventory;
 
+import org.apache.commons.lang.Validate;
+import org.bukkit.Material;
+import org.bukkit.material.MaterialData;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import org.apache.commons.lang.Validate;
-
-import org.bukkit.Material;
-import org.bukkit.material.MaterialData;
 
 /**
  * Represents a shapeless recipe, where the arrangement of the ingredients on
@@ -15,7 +14,7 @@ import org.bukkit.material.MaterialData;
  */
 public class ShapelessRecipe implements Recipe {
     private ItemStack output;
-    private List<ItemStack> ingredients = new ArrayList<ItemStack>();
+    private List<ItemStack> ingredients = new ArrayList<>();
 
     /**
      * Create a shapeless recipe to craft the specified ItemStack. The
@@ -217,7 +216,7 @@ public class ShapelessRecipe implements Recipe {
      * @return The input list
      */
     public List<ItemStack> getIngredientList() {
-        ArrayList<ItemStack> result = new ArrayList<ItemStack>(ingredients.size());
+        ArrayList<ItemStack> result = new ArrayList<>(ingredients.size());
         for (ItemStack ingredient : ingredients) {
             result.add(ingredient.clone());
         }

@@ -1,15 +1,11 @@
 package org.bukkit.permissions;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Level;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
+
+import java.util.*;
+import java.util.logging.Level;
 
 /**
  * Represents a unique permission that may be attached to a {@link
@@ -19,7 +15,7 @@ public class Permission {
     public static final PermissionDefault DEFAULT_PERMISSION = PermissionDefault.OP;
 
     private final String name;
-    private final Map<String, Boolean> children = new LinkedHashMap<String, Boolean>();
+    private final Map<String, Boolean> children = new LinkedHashMap<>();
     private PermissionDefault defaultValue = DEFAULT_PERMISSION;
     private String description;
 
@@ -225,7 +221,7 @@ public class Permission {
      * @return Permission object
      */
     public static List<Permission> loadPermissions(Map<?, ?> data, String error, PermissionDefault def) {
-        List<Permission> result = new ArrayList<Permission>();
+        List<Permission> result = new ArrayList<>();
 
         for (Map.Entry<?, ?> entry : data.entrySet()) {
             try {
@@ -296,7 +292,7 @@ public class Permission {
         if (data.get("children") != null) {
             Object childrenNode = data.get("children");
             if (childrenNode instanceof Iterable) {
-                children = new LinkedHashMap<String, Boolean>();
+                children = new LinkedHashMap<>();
                 for (Object child : (Iterable<?>) childrenNode) {
                     if (child != null) {
                         children.put(child.toString(), Boolean.TRUE);
@@ -317,7 +313,7 @@ public class Permission {
     }
 
     private static Map<String, Boolean> extractChildren(Map<?, ?> input, String name, PermissionDefault def, List<Permission> output) {
-        Map<String, Boolean> children = new LinkedHashMap<String, Boolean>();
+        Map<String, Boolean> children = new LinkedHashMap<>();
 
         for (Map.Entry<?, ?> entry : input.entrySet()) {
             if ((entry.getValue() instanceof Boolean)) {
